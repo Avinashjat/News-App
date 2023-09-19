@@ -34,7 +34,8 @@ export class News extends Component {
     constructor(){
         super();
        this.state ={
-               articals : this.artical
+               articals : this.artical,
+               loading : false
        }
         
     }
@@ -45,7 +46,7 @@ export class News extends Component {
         <h2> News World - Top headline </h2>
              <div className="row">
                 <div className="col-md-4">
-           <NewsItem title="News-Box"  discription="its is a new app "  imgurl ="https://www.aljazeera.com/wp-content/uploads/2023/09/33V82NE-highres-1694809059.jpg?resize=1920%2C1440"/>
+           <NewsItem title="News-Box"  discription="its is a new app "  imgurl ="https://www.aljazeera.com/wp-content/uploads/2023/09/33V82NE-highres-1694809059.jpg?resize=1920%2C1440" />
            </div>
 
            <div className="col-md-4">
