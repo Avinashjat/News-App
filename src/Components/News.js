@@ -17,50 +17,32 @@ export class News extends Component {
     };
   }
 
-  async componentDidMount() {
-    let url =`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=94903894357049f3adb1f24ae0b50794&page=1&pagesize=${this.props.pagesize}`;
+  async updatecodes (){
+    const url =`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=94903894357049f3adb1f24ae0b50794&page=${this.state.page}&pagesize=${this.props.pagesize}`;
     this.setState({ loading : true})
     let data = await fetch(url);
     let parsedData = await data.json();
     this.setState({ articles: parsedData.articles,totalResults:parsedData.totalResults,
       loading : false }); 
   }
+
+  async componentDidMount() {
+    this.updatecodes();
+  }
   
 
   clickpage1 = async()=>{
 
-    let url =`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=94903894357049f3adb1f24ae0b50794&page=${this.state.page-1}&pagesize=${this.props.pagesize}`;
-    this.setState({ loading : true})
-  let data = await fetch(url);
-  let parsedData = await data.json();
-  this.setState({ articles: parsedData.articles }); 
 
-  this.setState({
-    page : this.state.page-1,
-    articles: parsedData.articles,
-    loading : false
-   })
-  
+  this.setState({ page : this.state.page-1});
+  this.updatecodes();
   }
   
 
   clickpage2 =async()=>{
-    if(this.state.page+1 > Math.ceil(this.state.totalResults/this.props.pagesize)){
-
-    }else
-    {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=94903894357049f3adb1f24ae0b50794&page=${this.state.page+1}&pagesize=${this.props.pagesize}`;
-    this.setState({ loading : true})
-  let data = await fetch(url);
-  let parsedData = await data.json();
-  this.setState({ articles: parsedData.articles }); 
-
-    this.setState({
-       page : this.state.page+1,
-       articles: parsedData.articles,
-       loading : false
-      })
-    }
+  
+  this.setState({ page : this.state.page+1});
+  this.updatecodes();
   }
 
 
