@@ -3,11 +3,7 @@ import React, { Component } from 'react';
 import NewsItem from './NewsItem';
 import Loadingimg from './Loadingimg';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+
 
 export class News extends Component {
 
@@ -85,6 +81,10 @@ export class News extends Component {
                     description={element.description ? element.description.slice(0, 88) : ''}
                     imgurl={element.urlToImage}
                     newsurl={element.url}
+                    author={element.author}
+                    date={element.publishedAt}
+                    source={element.source.name}
+                    
                   />
                 </div>
               ); 
