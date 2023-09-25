@@ -20,23 +20,23 @@ const [totalResults, settotalResults] = useState(0);
 
 
   const updatecodes = async()=>{
-    props.setProgess(20);
+    props.setProgress(20);
     const url =`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pagesize=${props.pagesize}`;
     setloading(true)
    
     let data = await fetch(url);
-    props.setProgess(45);
+    props.setProgress(45);
     let parsedData = await data.json();
-    props.setProgess(70);
+    props.setProgress(70);
     setarticles(parsedData.articles);
     settotalResults(parsedData.totalResults);
     setloading(false)
-
-    
-      props.setProgess(100);
+    props.setProgress(100);
   }
+
   useEffect(() => {
     updatecodes();
+   // eslint-disable-next-line 
   },[]);
 
   
@@ -52,9 +52,12 @@ const [totalResults, settotalResults] = useState(0);
   // updatecodes();
   // }
 
+
+
   const fetchMoreData = async () => {
+    
+    const url =`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pagesize=${props.pagesize}`;
     setpage(page+1)
-    const url =`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pagesize=${props.pagesize}`;
     
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -67,7 +70,7 @@ const [totalResults, settotalResults] = useState(0);
       <>
  
         
-        <h1 className='text-center' style={{margin : "35px 0" }}>News World - Top  {capitalizeFirstLetter(props.category)} headlines</h1>
+        <h1 className='text-center' style={{margin : "35px 0",marginTop : "80px" }}>News World - Top  {capitalizeFirstLetter(props.category)} headlines</h1>
         {loading && <Loadingimg />}
         
         <InfiniteScroll
